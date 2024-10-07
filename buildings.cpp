@@ -69,3 +69,30 @@ void Buildings::readMapBuildings(XMLDocument& xmldoc) {
 int Buildings::getNumMapBuildings() const {
   return (int) this->MapBuildings.size();
 }
+
+//
+// prints all map buildings
+//
+void Buildings::print () {
+    for (Building& building : MapBuildings) {
+                cout << building.ID << ": " << building.Name << ", " << building.StreetAddress << endl;
+            }
+}
+
+//
+// searches buildings for input and prints if found
+//
+void Buildings::findAndPrint(string name, Nodes& nodes) {
+    bool found = false;
+    for (Building& building : MapBuildings) {
+        if (building.Name.find(name) != string::npos) {
+            found = true;
+            building.print(nodes);
+        }
+    }
+
+    //if building not found
+    if (found == false) {
+        cout << "No such building" << endl;
+    }
+}

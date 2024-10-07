@@ -56,42 +56,11 @@ int main ()
 
         // return list of all buildings
         if (command == "*") {
-            for (Building& building : buildings.MapBuildings) {
-                cout << building.ID << ": " << building.Name << ", " << building.StreetAddress << endl;
-            }
+            buildings.print();
         } 
         // output buildings that includes user input
         else {
-            bool found = false;
-            for (Building& building : buildings.MapBuildings) {
-                if (building.Name.find(command) != string::npos) {
-                    found = true;
-                    cout << building.Name << endl;
-                    cout << "Address: " << building.StreetAddress << endl;
-                    cout << "Building ID: " << building.ID << endl;
-                    cout << "Nodes:" << endl;
-
-                    double lat;
-                    double lon;
-                    bool isEntrance;
-                    for (long long id : building.NodeIDs) {
-                        if (nodes.find(id, lat, lon, isEntrance)) {
-                            cout << "  " << id << ": " << "(" << lat << ", " << lon << ")";
-                            if (isEntrance) {
-                                cout << ", is entrance";
-                            }
-                            cout << endl;
-                        }
-                        else {
-                            cout << "  " << id << ": " << "** NOT FOUND **" << endl;
-                        }
-                    }
-                }
-            }
-            // if building was not found
-            if (found != true) {
-                cout << "No such building" << endl;
-            }
+            buildings.findAndPrint(command, nodes);
         }
     }
 

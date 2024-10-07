@@ -3,7 +3,7 @@
 //
 // A building in the Open Street Map.
 // 
-// Prof. Joe Hummel
+// Helena Yuan
 // Northwestern University
 // CS 211
 // 
@@ -12,8 +12,10 @@
 
 #include <string>
 #include <vector>
+#include <iostream>
 
 #include "node.h"
+#include "nodes.h"
 
 using namespace std;
 
@@ -45,5 +47,10 @@ public:
   // adds the given nodeid to the end of the vector.
   //
   void add(long long nodeid);
+
+  //
+  // prints a building
+  //
+  void print(const Nodes& nodes);
 
 };

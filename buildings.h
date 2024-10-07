@@ -13,6 +13,8 @@
 #include <vector>
 #include "building.h"
 #include "tinyxml2.h"
+#include <iostream>
+#include <string>
 
 using namespace std;
 using namespace tinyxml2;
@@ -36,5 +38,16 @@ class Buildings
 
         //
         // accessors / getters
+        //
         int getNumMapBuildings() const;
+
+        //
+        // prints all map buildings
+        //
+        void print();
+
+        //
+        // searches buildings for input and prints if found
+        //
+        void findAndPrint(string name, Nodes& nodes);
 };

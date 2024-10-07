@@ -3,7 +3,7 @@
 //
 // A building in the Open Street Map.
 // 
-// Prof. Joe Hummel
+// Helena Yuan
 // Northwestern University
 // CS 211
 // 
@@ -36,4 +36,30 @@ Building::Building(long long id, string name, string streetAddr)
 void Building::add(long long nodeid)
 {
   this->NodeIDs.push_back(nodeid);
+}
+
+//
+// prints a building
+//
+void Building::print(const Nodes& nodes) {
+  cout << Name << endl;
+  cout << "Address: " << StreetAddress << endl;
+  cout << "Building ID: " << ID << endl;
+  cout << "Nodes:" << endl;
+
+  double lat;
+  double lon;
+  bool isEntrance;
+  for (long long id : NodeIDs) {
+      if (nodes.find(id, lat, lon, isEntrance)) {
+          cout << "  " << id << ": " << "(" << lat << ", " << lon << ")";
+          if (isEntrance) {
+              cout << ", is entrance";
+          }
+          cout << endl;
+      }
+      else {
+          cout << "  " << id << ": " << "** NOT FOUND **" << endl;
+      }
+  }
 }
