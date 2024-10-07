@@ -45,8 +45,12 @@ void Building::print(const Nodes& nodes) {
   cout << Name << endl;
   cout << "Address: " << StreetAddress << endl;
   cout << "Building ID: " << ID << endl;
+  cout << "# perimeter nodes: " << NodeIDs.size() << endl;
+
+  /*
   cout << "Nodes:" << endl;
 
+  
   double lat;
   double lon;
   bool isEntrance;
@@ -62,4 +66,5 @@ void Building::print(const Nodes& nodes) {
           cout << "  " << id << ": " << "** NOT FOUND **" << endl;
       }
   }
+  */
 }
