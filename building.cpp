@@ -8,7 +8,11 @@
 // CS 211
 // 
 
+#include <utility>
+
 #include "building.h"
+#include "node.h"
+#include "nodes.h"
 
 using namespace std;
 
@@ -47,6 +51,10 @@ void Building::print(const Nodes& nodes) {
   cout << "Building ID: " << ID << endl;
   cout << "# perimeter nodes: " << NodeIDs.size() << endl;
 
+  // gives location
+  pair<double, double> P = getLocation(nodes);
+  cout << "Location: (" << P.first << ", " << P.second << ")" << endl;
+
   /*
   cout << "Nodes:" << endl;
 
@@ -67,4 +75,30 @@ void Building::print(const Nodes& nodes) {
       }
   }
   */
+}
+
+//
+// gets the center(lat, lon) of the building based
+// on the nodes that form the perimeter
+//
+pair<double, double> Building::getLocation (const Nodes& nodes) {
+  double lat;
+  double lon;
+  bool isEntrance;
+  double totalLat;
+  double totalLon;
+  double avgLat;
+  double avgLon;
+
+  for (long long id : NodeIDs) {
+      if (nodes.find(id, lat, lon, isEntrance)) {
+        totalLat = totalLat + lat;
+        totalLon = totalLon + lon;
+      }
+  }
+
+  avgLat = totalLat / NodeIDs.size();
+  avgLon = totalLon / NodeIDs.size();
+
+  return make_pair(avgLat, avgLon);
 }

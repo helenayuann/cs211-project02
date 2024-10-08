@@ -13,6 +13,7 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <utility>
 
 #include "node.h"
 #include "nodes.h"
@@ -53,4 +54,9 @@ public:
   //
   void print(const Nodes& nodes);
 
+  //
+  // gets the center(lat, lon) of the building based
+  // on the nodes that form the perimeter
+  //
+  pair<double, double> getLocation (const Nodes& nodes);
 };
