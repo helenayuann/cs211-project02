@@ -24,30 +24,30 @@ using namespace tinyxml2;
 //
 class Buildings
 {
-    public:
-        vector<Building> MapBuildings;
+public:
+    vector<Building> MapBuildings;
 
-        //
-        // readMapBuildings
-        //
-        // Given an XML document, reads through the document and
-        // stores all the buildings into the given vector.
-        //
-        
-        void readMapBuildings(XMLDocument& xmldoc);
+    //
+    // readMapBuildings
+    //
+    // Given an XML document, reads through the document and
+    // stores all the buildings into the given vector.
+    //
+    
+    void readMapBuildings(XMLDocument& xmldoc);
 
-        //
-        // accessors / getters
-        //
-        int getNumMapBuildings() const;
+    //
+    // accessors / getters
+    //
+    int getNumMapBuildings() const;
 
-        //
-        // prints all map buildings
-        //
-        void print();
+    //
+    // prints all map buildings
+    //
+    void print();
 
-        //
-        // searches buildings for input and prints if found
-        //
-        void findAndPrint(string name, Nodes& nodes);
+    //
+    // searches buildings for input and prints if found
+    //
+    void findAndPrint(string name, Nodes& nodes);
 };

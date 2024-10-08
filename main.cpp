@@ -48,18 +48,20 @@ int main ()
     while (command != "$") {
         cout << "Enter building name (partial or complete), or * to list, or $ to end" << endl;
         getline(cin, command);
-
-        // ends loop
-        if (command == "$") {
+        
+        if (command == "$") { // ends loop
             break;
         }
-
-        // return list of all buildings
-        if (command == "*") {
+        
+        else if (command == "*") { // return list of all buildings
             buildings.print();
         } 
-        // output buildings that includes user input
-        else {
+
+        else if (command == "@") { // return list of all bus stops
+            
+        }
+        
+        else { // output buildings that includes user input
             buildings.findAndPrint(command, nodes);
         }
     }
