@@ -22,12 +22,12 @@ public:
     vector<BusStop> MapBusStops;
 
     //
-    // readBusStops
+    // constructor
     //
     // Given the name of a CSV file, input the data and
     // build a container of BusStop objects
     //
-    void readBusStops(string filename);
+    BusStops(string filename);
 
     //
     // accessors / getters

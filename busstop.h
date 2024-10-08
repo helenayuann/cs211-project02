@@ -25,14 +25,14 @@ public:
     string Location;
     double Lat;
     double Lon;
-    
+
     //
     // constructor
     //
     BusStop(int id, int route, string stopName, string direction, string location, double lat, double lon);
 
     //
-    // print a BusStop
+    // print a bus stop
     //
     void print();
 };

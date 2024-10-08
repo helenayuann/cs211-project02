@@ -24,7 +24,7 @@ using namespace std;
 // Given the name of a CSV file, input the data and
 // build a container of BusStop objects
 //
-void BusStops::readBusStops(string filename)
+BusStops::BusStops(string filename)
 {
     ifstream infile;
 
@@ -63,6 +63,8 @@ void BusStops::readBusStops(string filename)
 
         MapBusStops.push_back(B);
     }
+
+    infile.close();
 
 }
 

@@ -18,6 +18,7 @@
 #include "buildings.h"
 #include "busstop.h"
 #include "busstops.h"
+#include "dist.h"
 
 using namespace std;
 using namespace tinyxml2;
@@ -46,8 +47,7 @@ int main ()
     cout << "# of buildings: " << buildings.getNumMapBuildings() << endl;
 
     // initializes all bus stop objects
-    BusStops busstops;
-    busstops.readBusStops("bus-stops.txt");
+    BusStops busstops("bus-stops.txt");
     cout << "# of bus stops: " << busstops.getNumBusStops() << endl;
 
     // promts user for commands
@@ -63,7 +63,7 @@ int main ()
         else if (command == "*") { // return list of all buildings
             buildings.print();
         } 
-
+        
         else if (command == "@") { // return list of all bus stops
             busstops.print();
         }
