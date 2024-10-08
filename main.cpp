@@ -16,6 +16,8 @@
 #include "osm.h"
 #include "tinyxml2.h"
 #include "buildings.h"
+#include "busstop.h"
+#include "busstops.h"
 
 using namespace std;
 using namespace tinyxml2;
@@ -43,6 +45,11 @@ int main ()
     buildings.readMapBuildings(xmldoc);
     cout << "# of buildings: " << buildings.getNumMapBuildings() << endl;
 
+    // initializes all bus stop objects
+    BusStops busstops;
+    busstops.readBusStops("bus-stops.txt");
+    cout << "# of bus stops: " << busstops.getNumBusStops() << endl;
+
     // promts user for commands
     string command;
     while (command != "$") {
@@ -58,7 +65,7 @@ int main ()
         } 
 
         else if (command == "@") { // return list of all bus stops
-            
+            busstops.print();
         }
         
         else { // output buildings that includes user input

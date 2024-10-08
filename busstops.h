@@ -30,6 +30,11 @@ public:
     void readBusStops(string filename);
 
     //
+    // accessors / getters
+    //
+    int getNumBusStops() const;
+
+    //
     // prints all map bus stops
     //
     void print();

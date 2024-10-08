@@ -74,3 +74,7 @@ void BusStops::print() {
         busstop.print();
     }
 }
+
+int BusStops::getNumBusStops() const {
+  return (int) this->MapBusStops.size();
+}
