@@ -13,8 +13,13 @@
 #include <string>
 #include <sstream>
 #include <algorithm>
+#include <utility>
+#include <map>
 #include "busstops.h"
 #include "busstop.h"
+#include "building.h"
+#include "buildings.h"
+#include "dist.h"
 
 using namespace std;
 
@@ -77,6 +82,42 @@ void BusStops::print() {
     }
 }
 
+//
+// given a location, gives closest south and northbound bus stops
+//
+pair<BusStop, BusStop> BusStops::getClosest(pair<double, double> location) {
+    BusStop south = this->MapBusStops.front();
+    BusStop north = this->MapBusStops.front();
+    
+    double prevDist = INT_MAX;
+    double currDist;
+    for (BusStop& busstop : MapBusStops) {
+        currDist = distBetween2Points(busstop.Lat, busstop.Lon, location.first, location.second);
+        if (currDist < prevDist) {
+
+            // changes nearest bus stops
+            string direction = busstop.Direction;
+            if (direction == "Southbound") {
+                south = busstop;
+            }
+            else if (direction == "Northbound") {
+                north = busstop;
+            }
+
+            prevDist = currDist;
+        }
+        else {
+            prevDist = currDist;
+        }
+    }
+
+    return make_pair(south, north);
+}
+
+//
+// accessors / getters
+//
 int BusStops::getNumBusStops() const {
   return (int) this->MapBusStops.size();
 }
+

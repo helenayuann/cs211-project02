@@ -12,6 +12,7 @@
 
 #include <iostream>
 #include <vector>
+#include <utility>
 #include "busstop.h"
 
 using namespace std;
@@ -35,8 +36,15 @@ public:
     int getNumBusStops() const;
 
     //
+    // given a location, gives closest south and northbound bus stops
+    //
+    pair<BusStop, BusStop> getClosest(pair<double, double> location);
+
+    //
     // prints all map bus stops
     //
     void print();
+
+
 
 };

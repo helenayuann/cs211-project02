@@ -82,12 +82,12 @@ void Buildings::print () {
 //
 // searches buildings for input and prints if found
 //
-void Buildings::findAndPrint(string name, Nodes& nodes) {
+void Buildings::findAndPrint(string name, Nodes& nodes, BusStops& busstops) {
     bool found = false;
     for (Building& building : MapBuildings) {
         if (building.Name.find(name) != string::npos) {
             found = true;
-            building.print(nodes);
+            building.print(nodes, busstops);
         }
     }
 

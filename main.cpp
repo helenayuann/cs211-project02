@@ -69,7 +69,7 @@ int main ()
         }
         
         else { // output buildings that includes user input
-            buildings.findAndPrint(command, nodes);
+            buildings.findAndPrint(command, nodes, busstops);
         }
     }
 

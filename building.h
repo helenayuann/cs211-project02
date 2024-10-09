@@ -17,6 +17,7 @@
 
 #include "node.h"
 #include "nodes.h"
+#include "busstops.h"
 
 using namespace std;
 
@@ -52,7 +53,7 @@ public:
   //
   // prints a building
   //
-  void print(const Nodes& nodes);
+  void print(const Nodes& nodes, BusStops& busstops);
 
   //
   // gets the center(lat, lon) of the building based
