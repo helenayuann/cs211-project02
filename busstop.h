@@ -12,6 +12,7 @@
 
 #include <iostream>
 #include <string>
+#include <map>
 
 using namespace std;
 
@@ -35,4 +36,9 @@ public:
     // print a bus stop
     //
     void print();
+
+    //
+    // print a bus stop prediction
+    //
+    void printBusPredictions(string response);
 };

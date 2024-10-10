@@ -16,7 +16,10 @@
 #include "busstop.h"
 #include "busstops.h"
 #include "dist.h"
+#include "curl_util.h"
+#include "json.hpp"
 
+using json = nlohmann::json;
 using namespace std;
 
 
@@ -48,7 +51,7 @@ void Building::add(long long nodeid)
 //
 // prints a building
 //
-void Building::print(const Nodes& nodes, BusStops& busstops) {
+void Building::print(const Nodes& nodes, BusStops& busstops, CURL* curl) {
   cout << Name << endl;
   cout << "Address: " << StreetAddress << endl;
   cout << "Building ID: " << ID << endl;
@@ -69,6 +72,23 @@ void Building::print(const Nodes& nodes, BusStops& busstops) {
   cout << "Closest Northbound bus stop:" << endl;
   cout << "  " << north.ID << ": " << north.StopName << ", bus #" << north.Route << ", " << north.Location << ", " << northDist << " miles" << endl;
 
+  // bus arrival predictions
+  string sroute_str = to_string(south.Route);
+  string sid_str = to_string(south.ID);
+  string nroute_str = to_string(north.Route);
+  string nid_str = to_string(north.ID);
+  string south_url = "http://ctabustracker.com/bustime/api/v2/getpredictions?key=95MkKqznLPwDcKQa7sxHNcXdz&rt=" + sroute_str + "&stpid=" + sid_str + "&format=json";
+  string north_url = "http://ctabustracker.com/bustime/api/v2/getpredictions?key=95MkKqznLPwDcKQa7sxHNcXdz&rt=" + nroute_str + "&stpid=" + nid_str + "&format=json";
+
+  // south bus prediction
+  string south_response;
+  if (!callWebServer(curl, south_url, south_response)) {
+    cout << "  <<bus predictions unavailable, call failed>>" << endl;
+  }
+  else {
+    
+
+  }
   /*
   cout << "Nodes:" << endl;
 

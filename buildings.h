@@ -49,5 +49,5 @@ public:
     //
     // searches buildings for input and prints if found
     //
-    void findAndPrint(string name, Nodes& nodes, BusStops& busstops);
+    void findAndPrint(string name, Nodes& nodes, BusStops& busstops, CURL* curl);
 };

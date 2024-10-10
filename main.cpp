@@ -19,9 +19,12 @@
 #include "busstop.h"
 #include "busstops.h"
 #include "dist.h"
+#include "curl_util.h"
+#include "json.hpp"
 
 using namespace std;
 using namespace tinyxml2;
+using json = nlohmann::json;
 
 int main () 
 {   
@@ -50,6 +53,15 @@ int main ()
     BusStops busstops("bus-stops.txt");
     cout << "# of bus stops: " << busstops.getNumBusStops() << endl;
 
+    // initializes curl library
+    CURL* curl = curl_easy_init();
+    if (curl == nullptr) {
+        cout << "**ERROR:" << endl;
+        cout << "**ERROR: unable to initialize curl library" << endl;
+        cout << "**ERROR:" << endl;
+        return 0;
+    }
+
     // promts user for commands
     string command;
     while (command != "$") {
@@ -69,9 +81,20 @@ int main ()
         }
         
         else { // output buildings that includes user input
-            buildings.findAndPrint(command, nodes, busstops);
+            buildings.findAndPrint(command, nodes, busstops, curl);
         }
     }
+
+    //
+    // done:
+    //
+    curl_easy_cleanup(curl);
+
+    cout << endl;
+    cout << "** Done **" << endl;
+
+    return 0;
+    
 
     // ending output summary
     //cout << endl;
@@ -80,6 +103,4 @@ int main ()
     //cout << "# of calls to getID(): " << Node::getCallsToGetID() << endl;
     //cout << "# of Nodes created: " << Node::getCreated() << endl;
     //cout << "# of Nodes copied: " << Node::getCopied() << endl;
-
-    return 0;
 }
