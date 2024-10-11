@@ -52,6 +52,7 @@ int main ()
     // initializes all bus stop objects
     BusStops busstops("bus-stops.txt");
     cout << "# of bus stops: " << busstops.getNumBusStops() << endl;
+    cout << endl;
 
     // initializes curl library
     CURL* curl = curl_easy_init();
@@ -65,7 +66,8 @@ int main ()
     // promts user for commands
     string command;
     while (command != "$") {
-        cout << "Enter building name (partial or complete), or * to list, or $ to end" << endl;
+        cout << endl;
+        cout << "Enter building name (partial or complete), or * to list, or @ for bus stops, or $ to end>" << endl;
         getline(cin, command);
         
         if (command == "$") { // ends loop
