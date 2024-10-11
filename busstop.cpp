@@ -10,6 +10,7 @@
 
 #include <iostream>
 #include <map>
+#include <stdexcept>
 
 #include "busstop.h"
 #include "json.hpp"
@@ -41,6 +42,13 @@ void BusStop::printBusPredictions(string response) {
 
     // for each prediction (a map) in the prediciton list:
     for (auto& M : predictions) {
-        cout << "  vehicle #" << stoi(M["vid"]) <<
+        try {
+            cout << "  vehicle #" << stoi(M["vid"].get_ref<std::string&>()) << " on route " << stoi(M["rt"].get_ref<std::string&>()) << " travelling " 
+            << M["rtdir"].get_ref<std::string&>() << " to arrive in " << M["prdctdn"].get_ref<std::string&>() << " mins" << endl;
+        }
+        catch (exception& e) {
+            cout << "  error" << endl;
+            cout << "  malformed CTA response, prediction unavailable" << "  (error: " << e.what() << ")" << endl;
+        }
     }
 }

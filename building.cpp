@@ -67,11 +67,7 @@ void Building::print(const Nodes& nodes, BusStops& busstops, CURL* curl) {
   BusStop north = closest.second;
   double southDist = distBetween2Points(south.Lat, south.Lon, P.first, P.second);
   double northDist = distBetween2Points(north.Lat, north.Lon, P.first, P.second);
-  cout << "Closest Southbound bus stop:" << endl;
-  cout << "  " << south.ID << ": " << south.StopName << ", bus #" << south.Route << ", " << south.Location << ", " << southDist << " miles" << endl;
-  cout << "Closest Northbound bus stop:" << endl;
-  cout << "  " << north.ID << ": " << north.StopName << ", bus #" << north.Route << ", " << north.Location << ", " << northDist << " miles" << endl;
-
+  
   // bus arrival predictions
   string sroute_str = to_string(south.Route);
   string sid_str = to_string(south.ID);
@@ -81,14 +77,27 @@ void Building::print(const Nodes& nodes, BusStops& busstops, CURL* curl) {
   string north_url = "http://ctabustracker.com/bustime/api/v2/getpredictions?key=95MkKqznLPwDcKQa7sxHNcXdz&rt=" + nroute_str + "&stpid=" + nid_str + "&format=json";
 
   // south bus prediction
+  cout << "Closest Southbound bus stop:" << endl;
+  cout << "  " << south.ID << ": " << south.StopName << ", bus #" << south.Route << ", " << south.Location << ", " << southDist << " miles" << endl;
   string south_response;
   if (!callWebServer(curl, south_url, south_response)) {
     cout << "  <<bus predictions unavailable, call failed>>" << endl;
   }
   else {
-    
-
+    south.printBusPredictions(south_response);
   }
+
+  // north bus prediction
+  cout << "Closest Northbound bus stop:" << endl;
+  cout << "  " << north.ID << ": " << north.StopName << ", bus #" << north.Route << ", " << north.Location << ", " << northDist << " miles" << endl;
+  string north_response;
+  if (!callWebServer(curl, north_url, north_response)) {
+    cout << "  <<bus predictions unavailable, call failed>>" << endl;
+  }
+  else {
+    north.printBusPredictions(north_response);
+  }
+
   /*
   cout << "Nodes:" << endl;
 
