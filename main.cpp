@@ -52,7 +52,6 @@ int main ()
     // initializes all bus stop objects
     BusStops busstops("bus-stops.txt");
     cout << "# of bus stops: " << busstops.getNumBusStops() << endl;
-    cout << endl;
 
     // initializes curl library
     CURL* curl = curl_easy_init();

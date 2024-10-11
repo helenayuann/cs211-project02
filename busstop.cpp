@@ -29,7 +29,7 @@ BusStop::BusStop(int id, int route, string stopName, string direction, string lo
 // prints a bus stop
 //
 void BusStop::print() {
-    cout << ID << ": bus " << Route << ", " << StopName << ", " << Location << ", " << Direction << ", location (" << Lat << ", " << Lon << ")" << endl;
+    cout << ID << ": bus " << Route << ", " << StopName << ", " << Direction << ", " << Location << ", location (" << Lat << ", " << Lon << ")" << endl;
 }
 
 //
